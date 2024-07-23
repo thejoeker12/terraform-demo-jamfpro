@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  TF_CLOUD_ORGANIZATION: "deploymenttheory" # Replace with your Terraform Cloud organization name
+  TF_CLOUD_ORGANIZATION: "thejoeker" # Replace with your Terraform Cloud organization name
   TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
   TF_WORKSPACE: "terraform-jamfpro-demo"
   CONFIG_DIRECTORY: "workload/terraform/jamfpro"
