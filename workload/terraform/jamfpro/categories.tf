@@ -1,5 +1,5 @@
 resource "jamfpro_category" "jamfpro_category_001" {
-  name     = "tf-ghatest-category-01"
+  name     = "tf-jl-ghatest-category-01"
   priority = 5
 }
 

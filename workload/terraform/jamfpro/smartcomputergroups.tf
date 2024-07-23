@@ -1,5 +1,5 @@
 resource "jamfpro_smart_computer_group" "smart_computer_group_001" {
-  name = "tf-ghatest-computergroup-operating-system-like-macos-14"
+  name = "tf-jl-ghatest-computergroup-operating-system-like-macos-14"
 
   // optional
   site_id = -1

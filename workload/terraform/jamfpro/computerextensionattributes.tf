@@ -1,7 +1,7 @@
 
 # # //-------------------------------------------------------------------//
 resource "jamfpro_computer_extension_attribute" "computer_extension_attribute_popup_menu_1" {
-  name        = "tf-ghatest-cexa-popup-menu-example"
+  name        = "tf-jl-ghatest-cexa-popup-menu-example"
   enabled     = true
   description = "An attribute collected from a pop-up menu."
 

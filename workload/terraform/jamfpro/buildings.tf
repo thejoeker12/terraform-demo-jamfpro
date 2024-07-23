@@ -1,6 +1,6 @@
 
-resource "jamfpro_building" "jamfpro_building_001" {
-  name            = "tf-ghatest-Apple-Park"
+resource "jamfpro_building" "jamfpro_building_002" {
+  name            = "tf-jl-ghatest-Apple-Park"
   street_address1 = "The McIntosh Tree"
   street_address2 = "One Apple Park Way"
   city            = "Cupertino"
