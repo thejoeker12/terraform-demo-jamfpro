@@ -10,7 +10,7 @@ on:
 env:
   TF_CLOUD_ORGANIZATION: "thejoeker"
   TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
-  TF_WORKSPACE: "lbgsandbox-demo"
+  TF_WORKSPACE: "terraform-workspace-sandbox"
   CONFIG_DIRECTORY: "workload/terraform/jamfpro"
   PIPELINE_DEBUG: true
 
@@ -25,7 +25,7 @@ jobs:
     uses: ./.github/workflows/terraform-apply.yml
     with:
       tf_cloud_organization: "thejoeker"
-      tf_workspace: "lbgsandbox-demo"
+      tf_workspace: "terraform-workspace-sandbox"
       config_directory: "workload/terraform/jamfpro"
       debug: true
     secrets:
