@@ -40,7 +40,7 @@ jobs:
     needs: create-version-and-release
     uses: ./.github/workflows/terraform-plan.yml
     with:
-      tf_cloud_organization: "deploymenttheory"
+      tf_cloud_organization: "thejoeker"
       tf_workspace: "terraform-jamfpro-staging" 
       target_environment: "staging"
       debug: ${{ inputs.debug }}
