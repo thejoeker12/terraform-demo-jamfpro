@@ -8,7 +8,7 @@ on:
       - 'sandbox'
 
 env:
-  TF_CLOUD_ORGANIZATION: "deploymenttheory"
+  TF_CLOUD_ORGANIZATION: "thejoeker"
   TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
   TF_WORKSPACE: "terraform-jamfpro-sandbox"
   CONFIG_DIRECTORY: "workload/terraform/jamfpro"
@@ -24,7 +24,7 @@ jobs:
     if: github.event.pull_request.merged == true
     uses: ./.github/workflows/terraform-apply.yml
     with:
-      tf_cloud_organization: "deploymenttheory"
+      tf_cloud_organization: "thejoeker"
       tf_workspace: "terraform-jamfpro-sandbox"
       config_directory: "workload/terraform/jamfpro"
       debug: true

@@ -32,7 +32,7 @@ jobs:
     if: github.event.pull_request.merged == true
     needs: check-branch
     with:
-      tf_cloud_organization: "deploymenttheory"
+      tf_cloud_organization: "thejoeker"
       tf_workspace: "terraform-jamfpro-staging"
       config_directory: "workload/terraform/jamfpro"
       debug: true

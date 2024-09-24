@@ -69,7 +69,7 @@ jobs:
     needs: production-release
     uses: ./.github/workflows/terraform-plan.yml
     with:
-      tf_cloud_organization: "deploymenttheory"
+      tf_cloud_organization: "thejoeker"
       tf_workspace: "terraform-jamfpro-production" 
       target_environment: "production"
       debug: ${{ inputs.debug }}
