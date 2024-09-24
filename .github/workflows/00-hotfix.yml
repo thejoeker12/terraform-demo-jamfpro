@@ -40,8 +40,8 @@ jobs:
     needs: create-hotfix-version-and-release
     uses: ./.github/workflows/terraform-plan.yml
     with:
-      tf_cloud_organization: "deploymenttheory"
-      tf_workspace: "terraform-jamfpro-production" 
+      tf_cloud_organization: "thejoeker"
+      tf_workspace: "tfproduction" 
       target_environment: "production"
       debug: ${{ inputs.debug }}
       config_directory: "workload/terraform/jamfpro"
@@ -70,8 +70,8 @@ jobs:
     needs: manual-approval
     uses: ./.github/workflows/terraform-apply.yml
     with:
-      tf_cloud_organization: "deploymenttheory"
-      tf_workspace: "terraform-jamfpro-production"
+      tf_cloud_organization: "thejoeker"
+      tf_workspace: "tfproduction"
       config_directory: "workload/terraform/jamfpro"
       debug: true
     secrets:
@@ -110,8 +110,8 @@ jobs:
     needs: manual-approval-for-staging
     uses: ./.github/workflows/terraform-apply.yml
     with:
-      tf_cloud_organization: "deploymenttheory"
-      tf_workspace: "terraform-jamfpro-staging"
+      tf_cloud_organization: "thejoeker"
+      tf_workspace: "tfstaging"
       config_directory: "workload/terraform/jamfpro"
       debug: true
     secrets:
