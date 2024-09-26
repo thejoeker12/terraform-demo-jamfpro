@@ -6,9 +6,6 @@ on:
       branch_name:
         required: true
         type: string
-    secrets:
-      PAT_TOKEN:
-        required: true
 
 jobs:
   branch-cleanup:
@@ -22,7 +19,6 @@ jobs:
       - name: Delete release branch
         uses: actions/github-script@v7
         with:
-          github-token: ${{ secrets.PAT_TOKEN }}
           script: |
             const branchName = '${{ inputs.branch_name }}';
             console.log(`Attempting to delete branch: ${branchName}`);
