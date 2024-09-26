@@ -22,7 +22,7 @@ jobs:
     name: "Detect and Correct Drift - ${{ matrix.environment }}"
     runs-on: ubuntu-latest
     env:
-      TF_WORKSPACE: "terraform-jamfpro-${{ matrix.environment }}"
+      TF_WORKSPACE: "terraform-workspace-${{ matrix.environment }}"
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.7

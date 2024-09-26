@@ -41,7 +41,7 @@ jobs:
     uses: ./.github/workflows/terraform-plan.yml
     with:
       tf_cloud_organization: "thejoeker"
-      tf_workspace: "terraform-jamfpro-staging" 
+      tf_workspace: "terraform-workspace-staging" 
       target_environment: "staging"
       debug: ${{ inputs.debug }}
       config_directory: "workload/terraform/jamfpro"
@@ -60,7 +60,7 @@ jobs:
       change: ${{ needs.terraform-plan.outputs.change }}
       destroy: ${{ needs.terraform-plan.outputs.destroy }}
       run_link: ${{ needs.terraform-plan.outputs.run_link }}
-      tf_workspace: "terraform-jamfpro-staging"
+      tf_workspace: "terraform-workspace-staging"
 
   send-notification:
     needs: [create-version-and-release, terraform-plan, create-pr]

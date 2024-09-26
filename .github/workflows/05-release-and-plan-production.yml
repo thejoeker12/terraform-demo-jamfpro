@@ -70,7 +70,7 @@ jobs:
     uses: ./.github/workflows/terraform-plan.yml
     with:
       tf_cloud_organization: "thejoeker"
-      tf_workspace: "terraform-jamfpro-production" 
+      tf_workspace: "terraform-workspace-production" 
       target_environment: "production"
       debug: ${{ inputs.debug }}
       config_directory: "workload/terraform/jamfpro"
@@ -89,7 +89,7 @@ jobs:
       change: ${{ needs.terraform-plan.outputs.change }}
       destroy: ${{ needs.terraform-plan.outputs.destroy }}
       run_link: ${{ needs.terraform-plan.outputs.run_link }}
-      tf_workspace: "terraform-jamfpro-production"
+      tf_workspace: "terraform-workspace-production"
 
   send-notification:
     needs: [production-release, terraform-plan, create-pr]
