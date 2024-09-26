@@ -41,7 +41,7 @@ jobs:
     uses: ./.github/workflows/terraform-plan.yml
     with:
       tf_cloud_organization: "thejoeker"
-      tf_workspace: "terraform-jamfpro-production" 
+      tf_workspace: "terraform-workspace-production" 
       target_environment: "production"
       debug: ${{ inputs.debug }}
       config_directory: "workload/terraform/jamfpro"
@@ -71,7 +71,7 @@ jobs:
     uses: ./.github/workflows/terraform-apply.yml
     with:
       tf_cloud_organization: "thejoeker"
-      tf_workspace: "terraform-jamfpro-production"
+      tf_workspace: "terraform-workspace-production"
       config_directory: "workload/terraform/jamfpro"
       debug: true
     secrets:
@@ -111,7 +111,7 @@ jobs:
     uses: ./.github/workflows/terraform-apply.yml
     with:
       tf_cloud_organization: "thejoeker"
-      tf_workspace: "terraform-jamfpro-staging"
+      tf_workspace: "terraform-workspace-staging"
       config_directory: "workload/terraform/jamfpro"
       debug: true
     secrets:

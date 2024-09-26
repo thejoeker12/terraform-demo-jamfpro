@@ -1,7 +1,7 @@
 // set terraform cloud organization and workspaceterraform {
 terraform {
   cloud {
-    organization = "deploymenttheory"
+    organization = "thejoeker"
     workspaces {
       tags = ["Jamf Pro"]
     }

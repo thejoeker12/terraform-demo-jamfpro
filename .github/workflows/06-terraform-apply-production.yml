@@ -33,7 +33,7 @@ jobs:
     needs: check-branch
     with:
       tf_cloud_organization: "thejoeker"
-      tf_workspace: "terraform-jamfpro-production"
+      tf_workspace: "terraform-workspace-production"
       config_directory: "workload/terraform/jamfpro"
       debug: true
     secrets:
