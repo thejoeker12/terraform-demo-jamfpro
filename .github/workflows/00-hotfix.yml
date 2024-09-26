@@ -122,8 +122,6 @@ jobs:
     uses: ./.github/workflows/branch-cleanup.yml
     with:
       branch_name: release-${{ needs.create-hotfix-version-and-release.outputs.new_version }}
-    secrets:
-      PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
 
   send-notification:
     needs: [terraform-apply-production, backport-to-staging]
