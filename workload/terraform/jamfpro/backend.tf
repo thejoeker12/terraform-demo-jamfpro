@@ -3,7 +3,7 @@ terraform {
   cloud {
     organization = "thejoeker"
     workspaces {
-      tags = ["Jamf Pro"]
+      tags = ["jamf_pro"]
     }
   }
 }
