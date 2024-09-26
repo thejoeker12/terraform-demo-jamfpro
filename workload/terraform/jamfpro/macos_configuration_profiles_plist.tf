@@ -1,17 +1,17 @@
 
-resource "jamfpro_macos_configuration_profile_plist" "jamfpro_macos_configuration_profile_001" {
-  name                = "tf-demo-mcp-accessibility_hearing_base-prod-v0.0.1"
-  distribution_method = "Install Automatically"
-  payloads            = file("${path.module}/support_files/configuration_profiles/dt-mcp-accessibility_hearing_base-prod-v0.0.1.mobileconfig")
-  category_id         = -1
-  user_removable      = false
-  level               = "System"
-  redeploy_on_update  = "Newly Assigned"
-  scope {
-    all_computers = true
-    all_jss_users = true
-  }
-}
+# resource "jamfpro_macos_configuration_profile_plist" "jamfpro_macos_configuration_profile_001" {
+#   name                = "tf-demo-mcp-accessibility_hearing_base-prod-v0.0.1"
+#   distribution_method = "Install Automatically"
+#   payloads            = file("${path.module}/support_files/configuration_profiles/dt-mcp-accessibility_hearing_base-prod-v0.0.1.mobileconfig")
+#   category_id         = -1
+#   user_removable      = false
+#   level               = "System"
+#   redeploy_on_update  = "Newly Assigned"
+#   scope {
+#     all_computers = true
+#     all_jss_users = true
+#   }
+# }
 
 # resource "jamfpro_macos_configuration_profile_plist" "jamfpro_macos_configuration_profile_002" {
 #   name                = "tf-demo-mcp-accessibility_seeing_base-prod-v0.0.1"
