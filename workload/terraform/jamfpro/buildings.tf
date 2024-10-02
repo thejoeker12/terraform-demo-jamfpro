@@ -39,7 +39,7 @@ resource "jamfpro_building" "jamfpro_building_005" {
   country         = "United Kingdom"
 }
 
-resource "jamfpro_building" "jamfpro_building_003" {
+resource "jamfpro_building" "jamfpro_building_010" {
   name            = "tf-demo-Apple-Battersea-NOT JL"
   street_address1 = "Ground Floor, Turbine Hall A, Circus Rd W, Nine Elms"
   street_address2 = "Suite 1100"
