@@ -28,3 +28,13 @@ resource "jamfpro_building" "jamfpro_building_003" {
   zip_postal_code = "SW11 8AL"
   country         = "United Kingdom"
 }
+
+resource "jamfpro_building" "jamfpro_building_004" {
+  name            = "tf-demo-joes-house"
+  street_address1 = "cheesecake"
+  street_address2 = "Suite 1100"
+  city            = "London"
+  state_province  = "London"
+  zip_postal_code = "SW11 8AL"
+  country         = "United Kingdom"
+}
