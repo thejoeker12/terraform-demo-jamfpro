@@ -93,11 +93,11 @@ jobs:
 
   send-notification:
     needs: [production-release, terraform-plan, create-pr]
-    if: always()
+    if: ${{ always() && (vars.MSTEAMS_WEBHOOK_URL != '' || vars.SLACK_WEBHOOK_URL != '') }}
     uses: ./.github/workflows/send-notification.yml
     with:
       environment: "production"
       result: ${{ needs.terraform-plan.result == 'success' && 'success' || 'failure' }}
-      notification_channel: msteams
+      notification_channel: ${{ vars.MSTEAMS_WEBHOOK_URL != '' && 'msteams' || 'slack' }}
       new_version: ${{ needs.production-release.outputs.release_version }}
     secrets: inherit

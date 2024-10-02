@@ -165,55 +165,36 @@ Give this token a lifespan you are happy with and save it for later in use with 
 
 3. **Configure Github Secrets**: Set up the following secrets in your GitHub repository settings:
 
-- `TF_API_TOKEN`: Your Terraform Cloud API token for Terraform Cloud backend.
-- `PAT_TOKEN`: Your GitHub Personal Access Token for branch management operations.
-
-To set up the PAT_TOKEN:
-a. Go to your GitHub Settings > Developer settings > Personal access tokens > Fine-grained tokens.
-b. Click "Generate new token".
-c. Give your token a descriptive name, e.g., "Terraform Jamf Pro Config Branch Management".
-d. Set the expiration as per your security policies.
-e. Under "Repository access", select "Only select repositories" and choose the repository you're setting up.
-f. Under "Permissions", grant the following permissions:
-
-- Repository permissions:
-- Contents: Read and write (This allows branch management)
-- Metadata: Read-only (This is required for API operations)
-- Organization permissions:
-- Members: Read-only (If working within an organization)
-
-g. Click "Generate token" and copy the token immediately.
-h. In your repository, go to Settings > Secrets and variables > Actions.
-i. Click "New repository secret", name it PAT_TOKEN, and paste your token as the value.
+- `TF_API_TOKEN`: Your Terraform Cloud API token for communication between GHA and the Terraform Cloud backend.
 
 Optional:
+
+These webhook URLs are used in the Send Notification workflow (send-notification.yml) to send terraform deployment status updates to your team. The workflow determines which service to use based on the notification_channel input.
 
 - `MSTEAMS_WEBHOOK_URL`: Your Microsoft Teams webhook URL for sending notifications.
 - `SLACK_WEBHOOK_URL`: Your Slack webhook URL for sending notifications.
 
-(If you are not planning to integrate with either ms teams for slack then remove these steps from your pipelines.)
+The presenance of one of these environment variables will run the notification job for MS Teams or Slack utilising the defined webhook URL. If both values are set, MS Teams takes presedence.
 
-To set up the notification webhooks:
+To set up the notification webhooks on the messaging tool side, perform one of the following:
 
 a. For Microsoft Teams:
 
-- In your Teams channel, click the '...' next to the channel name and select 'Connectors'.
-- Find 'Incoming Webhook' and click 'Configure'.
+- In your Teams channel, click the '...' next to the channel name and select `Connectors`.
+- Find `Incoming Webhook` and click `Configure`.
 - Provide a name for your webhook and optionally upload an image.
 - Click 'Create' and copy the webhook URL provided.
 - In your GitHub repository, go to Settings > Secrets and variables > Actions.
-- Click "New repository secret", name it MSTEAMS_WEBHOOK_URL, and paste the webhook URL as the value.
+- Click "New repository secret", name it `MSTEAMS_WEBHOOK_URL`, and paste the webhook URL as the value.
 
 b. For Slack:
 
 - Go to your Slack workspace's App Directory and create a new app (or use an existing one).
-- Under 'Features', select 'Incoming Webhooks' and activate them.
+- Under 'Features', select `Incoming Webhooks` and activate them.
 - Click 'Add New Webhook to Workspace' and select the channel for notifications.
 - Copy the webhook URL provided.
 - In your GitHub repository, go to Settings > Secrets and variables > Actions.
-- Click "New repository secret", name it SLACK_WEBHOOK_URL, and paste the webhook URL as the value.
-
-These webhook URLs are used in the Send Notification workflow (send-notification.yml) to send deployment status updates to your team. The workflow determines which service to use based on the notification_channel input.
+- Click "New repository secret", name it `SLACK_WEBHOOK_URL`, and paste the webhook URL as the value.
 
 4. **Configure Terraform Cloud Secrets**:
 
@@ -264,23 +245,22 @@ Steps:
 
 6. **Target Branches**:
    - Under **Target branches**, add the branches you want to protect:
-     - `staging`
-     - `production`
+   - `staging`
+   - `production`
 
 7. **Configure Branch Rules**:
    - Set the following branch protection rules:
 
-     - **Restrict deletions**: Enable this option to prevent deletion of the `staging` and `production` branches.
-     
-     - **Require a pull request before merging**: Enable this option to ensure that all changes are reviewed before merging.
-       - **Required approvals**: Set this to `1` to ensure at least one approval is required for merging.
-       - **Dismiss stale pull request approvals when new commits are pushed**: Enable this option to dismiss previous approvals when new commits are made.
-       - **Require approval of the most recent reviewable push**: Enable this option to ensure that only the most recent commit is reviewed and approved.
-       - **Require conversation resolution before merging**: Enable this option to ensure that all review conversations are resolved before the pull request can be merged.
+   - **Restrict deletions**: Enable this option to prevent deletion of the `staging` and `production` branches.
+   - **Require a pull request before merging**: Enable this option to ensure that all changes are reviewed before merging.
+   - **Required approvals**: Set this to `1` to ensure at least one approval is required for merging.
+   - **Dismiss stale pull request approvals when new commits are pushed**: Enable this option to dismiss previous approvals when new commits are made.
+   - **Require approval of the most recent reviewable push**: Enable this option to ensure that only the most recent commit is reviewed and approved.
+   - **Require conversation resolution before merging**: Enable this option to ensure that all review conversations are resolved before the pull request can be merged.
 
-     - **Require status checks to pass**: Enable this to ensure that all required status checks (e.g., CI/CD tests) pass before a pull request is merged.
+   - **Require status checks to pass**: Enable this to ensure that all required status checks (e.g., CI/CD tests) pass before a pull request is merged.
 
-     - **Block force pushes**: Enable this to block any force pushes to the `staging` and `production` branches, ensuring that no one can overwrite the branch history.
+   - **Block force pushes**: Enable this to block any force pushes to the `staging` and `production` branches, ensuring that no one can overwrite the branch history.
 
 8. **Save the Ruleset**:
    - After configuring all of the rules, click **Create** or **Save** to apply the new ruleset to the `staging` and `production` branches.
@@ -288,25 +268,25 @@ Steps:
 
 6. **Update Terraform Variables**: Modify the `terraform` block in your `.tf` files to match your Jamf Pro instance details. For example:
 
-   ```hcl
-   provider "jamfpro" {
-     jamfpro_instance_fqdn                = var.jamfpro_instance_fqdn
-     jamfpro_load_balancer_lock           = var.jamfpro_jamf_load_balancer_lock
-     auth_method                          = var.jamfpro_auth_method
-     client_id                            = var.jamfpro_client_id
-     client_secret                        = var.jamfpro_client_secret
-     log_level                            = var.jamfpro_log_level
-     log_output_format                    = var.jamfpro_log_output_format
-     log_console_separator                = var.jamfpro_log_console_separator
-     log_export_path                      = var.jamfpro_log_export_path
-     export_logs                          = var.jamfpro_export_logs
-     hide_sensitive_data                  = var.jamfpro_hide_sensitive_data
-     token_refresh_buffer_period_seconds  = var.jamfpro_token_refresh_buffer_period_seconds
-     mandatory_request_delay_milliseconds = var.jamfpro_mandatory_request_delay_milliseconds
-   }
-   ```
+```hcl
+provider "jamfpro" {
+   jamfpro_instance_fqdn                = var.jamfpro_instance_fqdn
+   jamfpro_load_balancer_lock           = var.jamfpro_jamf_load_balancer_lock
+   auth_method                          = var.jamfpro_auth_method
+   client_id                            = var.jamfpro_client_id
+   client_secret                        = var.jamfpro_client_secret
+   log_level                            = var.jamfpro_log_level
+   log_output_format                    = var.jamfpro_log_output_format
+   log_console_separator                = var.jamfpro_log_console_separator
+   log_export_path                      = var.jamfpro_log_export_path
+   export_logs                          = var.jamfpro_export_logs
+   hide_sensitive_data                  = var.jamfpro_hide_sensitive_data
+   token_refresh_buffer_period_seconds  = var.jamfpro_token_refresh_buffer_period_seconds
+   mandatory_request_delay_milliseconds = var.jamfpro_mandatory_request_delay_milliseconds
+}
+```
 
-   It's strongly recommended for beginners to ensure that `jamfpro_load_balancer_lock` is set to true, to avoid any issues with the Jamf Pro load balancer.
+It's strongly recommended to ensure that `jamfpro_load_balancer_lock` is set to true, to avoid any issues with the Jamf Cloud load balancer.
 
 7. **Backend Configuration**: For our multi-environment setup, we'll be using Terraform workspaces. This approach allows us to use a single set of configuration files while maintaining separate states for each environment. Here's how to structure it:
 
