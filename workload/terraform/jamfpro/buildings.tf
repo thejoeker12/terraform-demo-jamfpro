@@ -10,7 +10,7 @@ resource "jamfpro_building" "jamfpro_building_001" {
 }
 
 resource "jamfpro_building" "jamfpro_building_002" {
-  name            = "tf-demo-jamf-headquarters-JL"
+  name            = "tf-demo-jamf-hq-JL"
   street_address1 = "100 Washington Ave S"
   street_address2 = "Suite 1100"
   city            = "Minneapolis"
@@ -29,9 +29,9 @@ resource "jamfpro_building" "jamfpro_building_003" {
   country         = "United Kingdom"
 }
 
-resource "jamfpro_building" "jamfpro_building_004" {
-  name            = "tf-demo-joes-flat"
-  street_address1 = "cheesecake"
+resource "jamfpro_building" "jamfpro_building_005" {
+  name            = "tf-demo-JNUC-Nashville"
+  street_address1 = "Somewhere in nashville"
   street_address2 = "Suite 1100"
   city            = "London"
   state_province  = "London"
@@ -39,9 +39,9 @@ resource "jamfpro_building" "jamfpro_building_004" {
   country         = "United Kingdom"
 }
 
-resource "jamfpro_building" "jamfpro_building_005" {
-  name            = "tf-demo-JNUC-Nashville"
-  street_address1 = "Somewhere in nashville"
+resource "jamfpro_building" "jamfpro_building_003" {
+  name            = "tf-demo-Apple-Battersea-NOT JL"
+  street_address1 = "Ground Floor, Turbine Hall A, Circus Rd W, Nine Elms"
   street_address2 = "Suite 1100"
   city            = "London"
   state_province  = "London"
