@@ -49,4 +49,12 @@ resource "jamfpro_building" "jamfpro_building_010" {
   country         = "United Kingdom"
 }
 
-#
+resource "jamfpro_building" "jamfpro_building_011" { 
+  name            = "tf-demo-Thursday"
+  street_address1 = "Ground Floor, Turbine Hall A, Circus Rd W, Nine Elms"
+  street_address2 = "Suite 1100"
+  city            = "London"
+  state_province  = "London"
+  zip_postal_code = "SW11 8AL"
+  country         = "United Kingdom"
+}
