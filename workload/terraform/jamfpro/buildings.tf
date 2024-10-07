@@ -58,3 +58,13 @@ resource "jamfpro_building" "jamfpro_building_011" {
   zip_postal_code = "SW11 8AL"
   country         = "United Kingdom"
 }
+
+resource "jamfpro_building" "jamfpro_building_012" { 
+  name            = "tf-demo-Help"
+  street_address1 = "High Wycombe"
+  street_address2 = "Suite 1100"
+  city            = "London"
+  state_province  = "London"
+  zip_postal_code = "SW11 8ALLLLLLLLLLLLLLLLLLLL"
+  country         = "United Kingdom"
+}
